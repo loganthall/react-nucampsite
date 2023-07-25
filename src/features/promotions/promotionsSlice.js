@@ -35,7 +35,7 @@ const promotionsSlice = createSlice({
             state.errMsg = '';
             state.promotionsArray = mapImageURL(action.payload);
         },
-        [fetchPromotions]: (state, action) => {
+        [fetchPromotions.rejected]: (state, action) => {
             state.isLoading = false;
             state.errMsg = action.error ? action.error.message : 'Fetch failed';
         }
@@ -45,5 +45,9 @@ const promotionsSlice = createSlice({
 export const promotionsReducer = promotionsSlice.reducer;
 
 export const selectFeaturedPromotion = (state) => {
-    return state.promotions.promotionsArray.find((promotion) => promotion.featured);
+    return {
+        featuredItem: state.promotions.promotionsArray.find((promotion) => promotion.featured),
+        isLoading: state.promotions.isLoading,
+        errMsg: state.promotions.errMsg
+    };
 };
