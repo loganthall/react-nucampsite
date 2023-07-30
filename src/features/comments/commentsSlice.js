@@ -20,7 +20,7 @@ export const postComment = createAsyncThunk(
         const response = await fetch(baseUrl + 'comments',
         {method: 'POST',
         body: JSON.stringify(comment),
-        headers: {'Content-Type': 'applications/json'}})
+        headers: {'Content-Type': 'application/json'}})
         if (!response.ok) {
             Promise.reject(response.status);
         }
